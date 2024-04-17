@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.mapper.MovieMapper">
+    <resultMap id="movieResultMap" type="com.example.pojo.Movie">
+        <result property="movieId" column="movie_id"/>
+        <result property="name" column="name"/>
+        <result property="url" column="url"/>
+        <result property="tag" column="tag"/>
+        <result property="rate" column="rate"/>
+        <result property="describe" column="describe"/>
+        <result property="duration" column="duration"/>
+        <result property="language" column="language"/>
+        <result property="director" column="director"/>
+        <result property="actor" column="actor"/>
+        <result property="location" column="location"/>
+        <result property="releaseTime" column="release_time"/>
+    </resultMap>
+    <select id="getAllMovies" resultMap="movieResultMap">
+        select * from moviesinfo where tag = #{tag}
+    </select>
+
+    <select id="getAllMoviesByName" resultMap="movieResultMap">
+        SELECT * FROM moviesinfo
+        <where>
+            <if test="search != null and search != ''">
+                AND name LIKE CONCAT('%', #{search}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="getMovieByList" resultMap="movieResultMap">
+        select * from moviesinfo
+        where movie_id in
+        <foreach item="item" collection="movielist" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+    <!--选前10个被最多人访问的电影-->
+    <select id="getHotMovies" resultMap="movieResultMap">
+        SELECT mi.*
+        FROM (
+                 SELECT MovieId, COUNT(UserId) AS num_ratings
+                 FROM ratings
+                 GROUP BY MovieId
+                 ORDER BY num_ratings DESC
+                     LIMIT 10
+             ) AS top_movies
+         JOIN moviesinfo mi ON top_movies.MovieId = mi.movie_id;
+    </select>
+
+    <select id="getNewMovies" resultMap="movieResultMap">
+        select * from newmoviesinfo order by release_time desc
+    </select>
+    <delete id="deleteMoiveById">
+        delete from moviesinfo where movie_id=#{id}
+    </delete>
+
+    <update id="updataMovieById" parameterType="com.example.pojo.Movie">
+        update moviesinfo
+        set
+            name = #{name},
+            url = #{url},
+            tag = #{tag},
+            rate = #{rate},
+            `describe` = #{describe},
+            duration = #{duration},
+            language = #{language},
+            director = #{director},
+            actor = #{actor},
+            location = #{location},
+            release_time = #{releaseTime}
+        WHERE movie_id = #{movieId}
+    </update>
+</mapper>
