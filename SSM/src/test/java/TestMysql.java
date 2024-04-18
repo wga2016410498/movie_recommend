@@ -1,19 +1,11 @@
 import com.example.mapper.MovieMapper;
-import com.example.mapper.PermissionMapper;
-import com.example.mapper.ProductMapper;
-import com.example.mapper.UserMapper;
 import com.example.pojo.*;
-import com.example.service.Impl.MovieServiceImpl;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageInfo;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class TestMysql {
 

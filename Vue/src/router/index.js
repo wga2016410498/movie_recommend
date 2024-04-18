@@ -2,14 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Manage from '@/views/Manage.vue'
 const routes = [
   {
-    path:'/',
-    name:'Home',
-    component:() => import('../views/Home'),
-  },
-  {
-    path: '/login',
+    path: '/',
     name: 'login',
     component: () => import('../views/Login.vue')
+  },
+  {
+    path:'/home',
+    name:'Home',
+    component:() => import('../views/Home'),
   },
   {
     path:'/movieinfo',
@@ -92,15 +92,15 @@ export function activeRouter(){
 
 // 路由前置守卫
 router.beforeEach((to,from,next)=>{
-  if(to.path === '/login' || to.path === '/register'||to.path === '/'||to.path==='/movieinfo'){
+  if(to.path === '/' || to.path === '/register'||to.path === '/'||to.path==='/movieinfo'){
     next()
     return
   }
   let user = sessionStorage.getItem("user")? JSON.parse(sessionStorage.getItem("user")) : {}
   if(!user.permissions || !user.permissions.length){
-    next('/login')
+    next('/')
   }else if(!user.permissions.find(p=> p.path === to.path)){
-    next('/login')
+    next('/')
   }else{
     next()
   }

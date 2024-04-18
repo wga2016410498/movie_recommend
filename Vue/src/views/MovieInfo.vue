@@ -13,7 +13,7 @@
           />
         
         <div class="rating-footer">
-          <el-button type="primary" @click="saveRating">保存</el-button>
+          <el-button type="primary" @click="saveRating($route.query.movieId)">保存</el-button>
         </div>
       </div>
     </div>
@@ -37,27 +37,51 @@
       <p><b>导演:</b> {{ $route.query.director }}</p>
       <p><b>演员:</b> {{ $route.query.actor }}</p>
       <p><b>上映地点:</b> {{ $route.query.location }}</p>
-      <p><b>持续时间:</b> {{ $route.query.release_time }}</p>
+      <p><b>上映时间:</b> {{ $route.query.release_time }}</p>
     </div>
   </el-card>
 </template>
 
 <script>
+import request from '@/utils/request';
+
 export default {
   name:'MovieInfo',
   data() {
-    return {
-     
+    return { 
       value:'',
     };
   },
   created(){
   },
   methods:{
-    saveRating(){
+    saveRating(movieId){
       // 先查看用户对于当前电影是否做过评价，没有做过评价就插入一条评价。
-      //如果做过评价，就显示用户已经评价过，无法再次评价。
+      let user =  JSON.parse(sessionStorage.getItem("user"))
+      console.log(user.userId)
+      console.log(movieId)
       console.log(this.value)
+      let timestamp = new Date().getTime()
+      console.log(timestamp)
+      const Rate = {
+        userId:user.userId,
+        movieId:movieId,
+        rate:this.value,
+        rateTime:timestamp
+      }
+      request.post("/addmovie",Rate).then(res=>{
+        if (res.data.code === '0') {
+            this.$message({
+            type: "success",
+            message: "更新成功"
+            })
+        }else{
+            this.$message({
+            type: "error",
+            message: res.data.msg
+            })
+        }
+      })
     },
   }
 };

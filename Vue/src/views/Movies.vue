@@ -1,12 +1,12 @@
 <template>
     <div class="container">
         <div class="main">
-            <el-tabs class="tabs" @tab-click="handleTabClick" v-model="activeName">
-                <el-tab-pane class="tabs-item" v-for="(item, index) in tabs" :key="index" :label="item.label" :name="item.name">
+            <el-tabs class="tabs" @tab-click="handleTabClick" v-model="activeName" stretch>
+                <el-tab-pane class="tabs-item"  v-for="(item, index) in tabs" :key="index" :label="item.label" :name="item.name">
                     <el-row>
                         <el-col :span="5"
                             v-for="(movie, movieIndex) in filteredMoviesByTag(item.label)" :key="movieIndex"
-                            style="margin-right: 16px;margin-bottom: 20px;">
+                            style="margin-left: 30px;margin-bottom: 20px;">
                             <ShowMovie :movie="movie" @click="showMovieInfo(movie)"></ShowMovie>
                         </el-col>
                     </el-row>
@@ -55,9 +55,9 @@ export default {
                 { label: '科幻', name: 'technology' },
                 { label: '家庭', name: 'family' },
                 { label: '历史', name: 'history' },
-                { label: '两性', name: 'both' },
+                // { label: '两性', name: 'both' },
                 // 如果要是等于其他
-                { label: '其他', name: 'other'},
+                // { label: '其他', name: 'other'},
             ],
             movies:[],  
         };

@@ -16,8 +16,6 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     MovieMapper movieMapper;
 
-
-
     @Override    //根据类别查询全部
     public PageInfo findAllMovie(Integer currentPage, Integer pageSize,String tag) {
         PageHelper.startPage(currentPage, pageSize);
