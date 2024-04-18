@@ -18,9 +18,13 @@ public interface MovieMapper {
 
     int updataMovieById(Movie movie);
 
+    int insertMovie(Movie movie);
+
     List<Movie> getMovieByList(@Param(value = "movielist") List<Integer> movieList);
 
     List<Movie> getHotMovies();
 
     List<Movie> getNewMovies();
+
+
 }

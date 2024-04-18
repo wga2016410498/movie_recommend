@@ -2,6 +2,7 @@
     <el-container>
         <el-header>
             <nav-head :user="user"></nav-head>
+            <h1 style="margin-top:20px;margin-left: 70px;">最新上映</h1>
             <carousel :carousels="carousels"></carousel>
         </el-header>
 

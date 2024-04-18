@@ -74,4 +74,11 @@
             release_time = #{releaseTime}
         WHERE movie_id = #{movieId}
     </update>
+
+    <insert id="insertMovie" parameterType="com.example.pojo.Movie">
+        insert into newmoviesinfo
+        (movie_id,name,url,tag,rate,`describe`,duration,language,director,actor,location,release_time)
+        values
+        (#{movieId},#{name},#{url},#{tag},#{rate},#{describe},#{duration},#{language},#{director},#{actor},#{location},#{releaseTime});
+    </insert>
 </mapper>

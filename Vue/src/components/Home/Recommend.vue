@@ -2,7 +2,7 @@
     <div>
         <el-row>
             <!-- 推荐列表 -->
-            <el-col :span="17">
+            <el-col :span="16" style="margin-left:50px">
                 <div class="title">
                     <h2 style="text-align:left;font-weight:700;">作品推荐</h2>
                 </div>
@@ -19,7 +19,7 @@
             </el-col>
 
             <!-- 排行榜 -->
-            <el-col :span="7">
+            <el-col :span="6" style="margin-left:50px">
                 <ranking-list :rankinglist="rankinglist"></ranking-list>
             </el-col>
         </el-row>

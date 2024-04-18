@@ -67,5 +67,10 @@ public class MovieController {
         movieMapper.updataMovieById(movie);
         return Result.success();
     }
-    //根据python 训练出来的
+
+    @PostMapping("/addmovie")
+    public Result<?> addMovie(@RequestBody Movie movie){
+        movieMapper.insertMovie(movie);
+        return Result.success();
+    }
 }

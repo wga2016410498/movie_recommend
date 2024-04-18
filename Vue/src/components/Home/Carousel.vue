@@ -10,13 +10,12 @@
       </el-carousel-item>
   </el-carousel> -->
   
-  <el-carousel height="320px" motion-blur>
+  <el-carousel height="400px" motion-blur>
       <el-carousel-item v-for="(carouselItem, index) in Math.ceil(carousels.length / 5)" :key="index" style="display:flex;justify-content: space-around;">
-        <div class="carousel-slide" v-for="(item, i) in carousels.slice(index * 5, index * 5 + 5)" :key="i" style="display:flex;">
-          <Card :card="item"></Card>
-          <!-- <el-card >
-            <img :src="item.url" height="100%" width="100%" />
-          </el-card> -->
+        <div class="carousel-slide" v-for="(item, i) in carousels.slice(index * 5, index * 5 + 5)" :key="i">
+          <Card :card="item" style="margin-top:10px"></Card>
+          <p style="font-size:15px;color:rgb(224, 216, 216);text-align: center;">{{item.name}}</p>
+          <el-button type="info" plain style="width:200px">选座购票</el-button>
         </div>
       </el-carousel-item>
   </el-carousel>

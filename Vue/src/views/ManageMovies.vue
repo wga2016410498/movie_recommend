@@ -95,14 +95,18 @@
           </span>
         </template> 
       </el-dialog>
+
     <!--这个下拉框负责新增电影的时候使用  -->
       <el-dialog title="电影信息" v-model="insertDialog" width="50%" center>
         <el-form :model="movieInfo" label-width="120px">
-          <!-- <el-form-item label="电影ID">
+          <el-form-item label="电影ID">
             <el-input v-model="movieInfo.movieId" style="width: 80%"></el-input>
-          </el-form-item> -->
+          </el-form-item>
           <el-form-item label="电影名称">
             <el-input v-model="movieInfo.name" style="width: 80%"></el-input>
+          </el-form-item>
+          <el-form-item label="电影链接">
+            <el-input v-model="movieInfo.url" style="width: 80%"></el-input>
           </el-form-item>
           <el-form-item label="电影类型">
             <el-input v-model="movieInfo.tag" style="width: 80%"></el-input>
@@ -110,8 +114,14 @@
           <el-form-item label="电影评分">
             <el-input v-model="movieInfo.rate" style="width: 80%"></el-input>
           </el-form-item>
+          <el-form-item label="电影简介">
+            <el-input v-model="movieInfo.describe" style="width: 80%"></el-input>
+          </el-form-item>
           <el-form-item label="电影时长">
             <el-input v-model="movieInfo.duration" style="width: 80%"></el-input>
+          </el-form-item>
+          <el-form-item label="电影语言">
+            <el-input v-model="movieInfo.language" style="width: 80%"></el-input>
           </el-form-item>
           <el-form-item label="电影导演">
             <el-input v-model="movieInfo.director" style="width: 80%"></el-input>
@@ -119,15 +129,19 @@
           <el-form-item label="电影演员">
             <el-input v-model="movieInfo.actor" style="width: 80%"></el-input>
           </el-form-item>
-          <el-form-item label="电影简介">
-            <el-input v-model="movieInfo.describe" style="width: 80%"></el-input>
+          <el-form-item label="上映地点">
+            <el-input v-model="movieInfo.location" style="width: 80%"></el-input>
           </el-form-item>
+          <el-form-item label="上映时间">
+            <el-input v-model="movieInfo.releaseTime" style="width: 80%"></el-input>
+          </el-form-item>
+          
         </el-form>
 
         <template #footer>
           <span class="dialog-footer">
             <el-button @click="dialogVisible = false">取 消</el-button>
-            <el-button type="primary" @click="save">确 定</el-button>
+            <el-button type="primary" @click="add">确 定</el-button>
           </span>
         </template> 
       </el-dialog>
@@ -217,7 +231,25 @@ export default {
         },
         //新增操作
         insertMovie(){
-            this.insertDialog = true
+          this.movieInfo={}
+          this.insertDialog = true
+        },
+        add()
+        {
+          request.post("/movies/addmovie",this.movieInfo).then(res=>{
+            if (res.data.code === '0') {
+                    this.$message({
+                    type: "success",
+                    message: "更新成功"
+                    })
+                } else {
+                    this.$message({
+                    type: "error",
+                    message: res.data.msg
+                    })
+                }
+                // this.insertVisible = false  // 关闭弹窗
+          })
         }
     },
 }
