@@ -248,7 +248,7 @@ export default {
                     message: res.data.msg
                     })
                 }
-                // this.insertVisible = false  // 关闭弹窗
+                this.insertVisible = false  // 关闭弹窗
           })
         }
     },
