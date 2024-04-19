@@ -17,6 +17,7 @@
         <result property="actor" column="actor"/>
         <result property="location" column="location"/>
         <result property="releaseTime" column="release_time"/>
+        <result property="outUrl" column="out_url"/>
     </resultMap>
     <select id="getAllMovies" resultMap="movieResultMap">
         select * from moviesinfo where tag = #{tag}
@@ -42,18 +43,19 @@
     <select id="getHotMovies" resultMap="movieResultMap">
         SELECT mi.*
         FROM (
-                 SELECT MovieId, COUNT(UserId) AS num_ratings
+                 SELECT movie_id, COUNT(user_id) AS num_ratings
                  FROM ratings
-                 GROUP BY MovieId
+                 GROUP BY movie_id
                  ORDER BY num_ratings DESC
                      LIMIT 10
              ) AS top_movies
-         JOIN moviesinfo mi ON top_movies.MovieId = mi.movie_id;
+         JOIN moviesinfo mi ON top_movies.movie_id = mi.movie_id;
     </select>
 
     <select id="getNewMovies" resultMap="movieResultMap">
         select * from newmoviesinfo order by release_time desc
     </select>
+
     <delete id="deleteMoiveById">
         delete from moviesinfo where movie_id=#{id}
     </delete>
@@ -71,14 +73,15 @@
             director = #{director},
             actor = #{actor},
             location = #{location},
-            release_time = #{releaseTime}
+            release_time = #{releaseTime},
+            out_url = #{outUrl}
         WHERE movie_id = #{movieId}
     </update>
 
     <insert id="insertMovie" parameterType="com.example.pojo.Movie">
         insert into newmoviesinfo
-        (movie_id,name,url,tag,rate,`describe`,duration,language,director,actor,location,release_time)
+        (movie_id,name,url,tag,rate,`describe`,duration,language,director,actor,location,release_time,out_url)
         values
-        (#{movieId},#{name},#{url},#{tag},#{rate},#{describe},#{duration},#{language},#{director},#{actor},#{location},#{releaseTime});
+        (#{movieId},#{name},#{url},#{tag},#{rate},#{describe},#{duration},#{language},#{director},#{actor},#{location},#{releaseTime},#{outUrl});
     </insert>
 </mapper>

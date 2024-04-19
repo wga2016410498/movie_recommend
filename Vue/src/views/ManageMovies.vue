@@ -135,6 +135,9 @@
           <el-form-item label="上映时间">
             <el-input v-model="movieInfo.releaseTime" style="width: 80%"></el-input>
           </el-form-item>
+          <el-form-item label="购买链接">
+            <el-input v-model="movieInfo.outUrl" style="width: 80%"></el-input>
+          </el-form-item>
           
         </el-form>
 

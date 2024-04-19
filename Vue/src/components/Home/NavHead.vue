@@ -1,38 +1,30 @@
 <template>
   <el-row class="head-container">
-    <el-col :span="8">
-        
+    <el-col :span="8" >
         <div class="grid-content left">
-            <img class="nav-img" src="../../assets/logo.gif">
-            <span class="web-span">
+            <img class="nav-img" src="../../assets/sun.gif">
+            <span class="web-span" style="font-size: 20px;">
                 {{ title }}
             </span>
             </div>
         
     </el-col>
    
-    <el-col :span="16" >
+    <el-col :span="16" v-if="userflag==0 ">
         <div class="grid-content right">            
-            <div class="nav-item">
-              <span class="nav-span" @click="goCollect">收藏</span>
-            </div>
-            <div class="nav-item" @click="goHistory">
-              <span class="nav-span">历史</span>
-            </div>
             <div class="nav-item" style="margin-right:50px">
                 <el-dropdown :hide-on-click="false">
-                   
                     <span class="el-dropdown-link">
                       <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
                     </span>
                     <template #dropdown>
-                      <el-dropdown-menu v-if="user">
+                      <el-dropdown-menu >
                         <el-dropdown-item @click="$router.push('/person')">个人信息</el-dropdown-item>
                         <el-dropdown-item @click="logout">退出系统</el-dropdown-item>
                       </el-dropdown-menu>
-                      <el-dropdown-menu v-else>
+                      <!-- <el-dropdown-menu v-else>
                         <el-dropdown-item @click="$router.push('/login')">登录</el-dropdown-item>
-                      </el-dropdown-menu>
+                      </el-dropdown-menu> -->
                     </template>
                 </el-dropdown>
             </div>
@@ -50,16 +42,22 @@ export default {
             title:'电影推荐系统',
             searchContent: '',
             circleUrl:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+            userflag:''
         }
     },
     methods:{
         goLogin(){
-            this.$router.push('/login')
+            this.$router.push('/')
         },
         logout(){
           sessionStorage.removeItem('user');
-          this.$router.push('/login')
+          this.$router.push('/')
         }
+    },
+    created(){
+      let userStr =JSON.parse(sessionStorage.getItem("user"));
+      this.userflag = userStr.role
+      console.log(this.userflag)
     }
 }
 </script>

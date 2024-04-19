@@ -1,7 +1,6 @@
 package com.example.service.Impl;
 
 import com.example.mapper.UserMapper;
-import com.example.pojo.Authentication;
 import com.example.pojo.User;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

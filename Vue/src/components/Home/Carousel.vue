@@ -15,7 +15,7 @@
         <div class="carousel-slide" v-for="(item, i) in carousels.slice(index * 5, index * 5 + 5)" :key="i">
           <Card :card="item" style="margin-top:10px"></Card>
           <p style="font-size:15px;color:rgb(224, 216, 216);text-align: center;">{{item.name}}</p>
-          <el-button type="info" plain style="width:200px">选座购票</el-button>
+          <el-button type="info" plain style="width:200px" @click=openOutUrl(item.outUrl)>选座购票</el-button>
         </div>
       </el-carousel-item>
   </el-carousel>
@@ -33,7 +33,13 @@ export default {
     return {
     }
   },
-  props: ['carousels']
+  props: ['carousels'],
+  methods:{
+    openOutUrl(outUrl)
+    {
+        window.open(outUrl);
+    }
+  }
 }
 </script>
 <style scoped>

@@ -8,7 +8,7 @@
     <NavHead :user="user"></NavHead>
   </el-header>
   <el-container>
-    <el-aside width="170px" style="margin-left:100px;">
+    <el-aside width="120px" >
       <el-menu
         :default-active="this.$route.path"
         class="el-menu-vertical"
@@ -22,18 +22,18 @@
           <el-icon><location /></el-icon>
           <span>电影管理</span>
         </el-menu-item>
-        <el-menu-item index="2" style="margin-bottom: 150px;">
+        <!-- <el-menu-item index="2" style="margin-bottom: 150px;">
           <el-icon><IconMenu/></el-icon>
           <span>用户管理</span>
-        </el-menu-item>
-        <el-menu-item index="3" style="margin-bottom: 150px;">
+        </el-menu-item> -->
+        <!-- <el-menu-item index="3" style="margin-bottom: 150px;">
           <el-icon><document /></el-icon>
           <span>权限管理</span>
         </el-menu-item>
         <el-menu-item index="4">
           <el-icon><setting /></el-icon>
           <span>订单管理</span>
-        </el-menu-item>
+        </el-menu-item> -->
          <!-- <el-sub-menu index="5">
           <template #title>
             <span>信息统计</span>

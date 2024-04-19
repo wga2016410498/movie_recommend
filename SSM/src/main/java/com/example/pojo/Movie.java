@@ -16,6 +16,16 @@ public class Movie {
     private String location;
     private String releaseTime;
 
+    private String outUrl;
+
+    public String getOutUrl() {
+        return outUrl;
+    }
+
+    public void setOutUrl(String outUrl) {
+        this.outUrl = outUrl;
+    }
+
     public Integer getMovieId() {
         return movieId;
     }
@@ -126,7 +136,8 @@ public class Movie {
                 ", director='" + director + '\'' +
                 ", actor='" + actor + '\'' +
                 ", location='" + location + '\'' +
-                ", release_time='" + releaseTime + '\'' +
+                ", releaseTime='" + releaseTime + '\'' +
+                ", outUrl='" + outUrl + '\'' +
                 '}';
     }
 }

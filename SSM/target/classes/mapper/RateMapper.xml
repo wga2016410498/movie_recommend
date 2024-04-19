@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.RateMapper">
+    <resultMap id="movieMap" type="com.example.pojo.Rate">
+        <result property="userId" column="user_id"></result>
+        <result property="movieId" column="movie_id"></result>
+        <result property="rate" column="rate"></result>
+        <result property="rateTime" column="rate_time"></result>
+    </resultMap>
+    <select id="selectRateById" resultMap="movieMap">
+        select * from ratings where user_id = #{userId} and movie_id = #{movieId}
+    </select>
+    <insert id="insertRate" parameterType="com.example.pojo.Rate">
+        insert into ratings(user_id,movie_id,rate,rate_time) values (#{userId},#{movieId},#{rate},#{rateTime})
+    </insert>
+
+    <update id="updateRate" parameterType="com.example.pojo.Rate">
+        update ratings
+        set
+            rate = #{rate},
+            rate_time = #{rateTime}
+        where user_id = #{userId} and movie_id = #{movieId}
+    </update>
+</mapper>

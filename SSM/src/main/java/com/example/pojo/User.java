@@ -1,40 +1,79 @@
 package com.example.pojo;
 
+import java.util.Date;
+import java.util.Set;
+
 public class User {
-    private String userId;//用户id
-    private String cardType;//证件类型
-    private String cardNo;//证件号码
-    private String userName;//用户姓名
-    private String userSex;//用户性别
-    private String userAge;//用户年龄
-    private String userRole;//用户角色
 
+    private Integer userId;
+    private String userName;
+    private String password;
+    private String email;
+    private Date createdAt;
+    private Integer role;
 
+    private Set<Permission> permissions;
+    private String token;//token
 
-    public String getUserId() {
+    private String gender;
+    private Integer age;
+    private String occupation;
+    private String zipCode;
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getToken() {
+        return token;
+    }
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public Integer getRole(){return role;}
+
+    public void setRole(int role){
+        this.role = role;
+    }
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
-
-    public String getCardType() {
-        return cardType;
+    public void setToken(String token) {
+        this.token = token;
     }
-
-    public void setCardType(String cardType) {
-        this.cardType = cardType;
-    }
-
-    public String getCardNo() {
-        return cardNo;
-    }
-
-    public void setCardNo(String cardNo) {
-        this.cardNo = cardNo;
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -43,40 +82,53 @@ public class User {
         this.userName = userName;
     }
 
-    public String getUserSex() {
-        return userSex;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserSex(String userSex) {
-        this.userSex = userSex;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getUserAge() {
-        return userAge;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserAge(String userAge) {
-        this.userAge = userAge;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getUserRole() {
-        return userRole;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setUserRole(String userRole) {
-        this.userRole = userRole;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Set<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissionSet(Set<Permission> permissions) {
+        this.permissions = permissions;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId='" + userId + '\'' +
-                ", cardType='" + cardType + '\'' +
-                ", cardNo='" + cardNo + '\'' +
+                "userId=" + userId +
                 ", userName='" + userName + '\'' +
-                ", userSex='" + userSex + '\'' +
-                ", userAge='" + userAge + '\'' +
-                ", userRole='" + userRole + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", createdAt=" + createdAt +
+                ", role=" + role +
+                ", permissions=" + permissions +
+                ", token='" + token + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                ", occupation='" + occupation + '\'' +
+                ", zipCode='" + zipCode + '\'' +
                 '}';
     }
 }

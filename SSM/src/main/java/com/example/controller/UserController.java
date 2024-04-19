@@ -3,16 +3,14 @@ package com.example.controller;
 import com.example.config.Result;
 import com.example.mapper.PermissionMapper;
 import com.example.mapper.UserMapper;
-import com.example.pojo.Authentication;
-import com.example.pojo.Permission;
 import com.example.pojo.User;
+import com.example.pojo.Permission;
 import com.example.service.UserService;
 import com.example.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -37,16 +35,16 @@ public class UserController {
     }
     //在用户登陆的过程中，如果发现用户是管理员，就让他进入的时候显示管理界面。如果是普通用户的话就显示主页。而且二者能访问的界面不同。
     @RequestMapping("/login")
-    public Result<?> Login(@RequestBody Authentication userParam){
-        Authentication authentication = userMapper.UserLogin(userParam.getUserName());
-        if(authentication!=null){
-            if(authentication.getPassword().equals(userParam.getPassword())){
-                String token = TokenUtils.genToken(authentication);
-                System.out.println(token);
-                authentication.setToken(token);
-                Set<Permission> permissions = permissionMapper.SelectPermissionByRole(authentication.getRole());
-                authentication.setPermissionSet(permissions);
-                return Result.success(authentication);
+    public Result<?> Login(@RequestBody User userParam){
+        User user = userMapper.UserLogin(userParam.getUserName());
+        if(user !=null){
+            if(user.getPassword().equals(userParam.getPassword())){
+                String token = TokenUtils.genToken(user);
+//                System.out.println(token);
+                user.setToken(token);
+                Set<Permission> permissions = permissionMapper.SelectPermissionByRole(user.getRole());
+                user.setPermissionSet(permissions);
+                return Result.success(user);
             }else{
                 return Result.error("-1", "密码错误");//0代表账号有，密码无
             }
@@ -57,9 +55,9 @@ public class UserController {
 
     //注册
     @RequestMapping("/register")
-    public Result<?> Register(@RequestBody Authentication userParam){
-        Authentication authentication = userMapper.UserLogin(userParam.getUserName());
-        if(authentication!=null){
+    public Result<?> Register(@RequestBody User userParam){
+        User user = userMapper.UserLogin(userParam.getUserName());
+        if(user !=null){
             return Result.error("-1","用户名已被注册");
         }
         else
@@ -71,5 +69,9 @@ public class UserController {
     }
 
     //修改个人信息
-
+    @PutMapping("/updateinfo")
+    public Result<?> updataUserInfo(@RequestBody User userParam){
+        int count = userMapper.updataUserInfo(userParam);
+        return Result.success();
+    }
 }

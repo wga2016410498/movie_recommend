@@ -58,9 +58,6 @@ export default {
     saveRating(movieId){
       // 先查看用户对于当前电影是否做过评价，没有做过评价就插入一条评价。
       let user =  JSON.parse(sessionStorage.getItem("user"))
-      console.log(user.userId)
-      console.log(movieId)
-      console.log(this.value)
       let timestamp = new Date().getTime()
       console.log(timestamp)
       const Rate = {

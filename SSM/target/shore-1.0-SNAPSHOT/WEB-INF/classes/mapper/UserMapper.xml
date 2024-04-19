@@ -6,33 +6,49 @@
 
 <mapper namespace="com.example.mapper.UserMapper">
 
-    <resultMap id="userResultMap" type="com.example.pojo.User">
-        <result property="userId" column="user_id"/>
-        <result property="userName" column="user_name"/>
-        <result property="cardType" column="card_type"/>
-        <result property="cardNo" column="card_no"/>
-        <result property="userSex" column="user_sex"/>
-        <result property="userRole" column="user_role"/>
-        <result property="userAge" column="user_age"/>
-    </resultMap>
+<!--    <resultMap id="userResultMap" type="com.example.pojo.User">-->
+<!--        <result property="userId" column="user_id"/>-->
+<!--        <result property="userName" column="user_name"/>-->
+<!--        <result property="cardType" column="card_type"/>-->
+<!--        <result property="cardNo" column="card_no"/>-->
+<!--        <result property="userSex" column="user_sex"/>-->
+<!--        <result property="userRole" column="user_role"/>-->
+<!--        <result property="userAge" column="user_age"/>-->
+<!--    </resultMap>-->
 
-    <resultMap id="userLogin" type="com.example.pojo.Authentication">
+    <resultMap id="userResultMap" type="com.example.pojo.User">
         <result property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
         <result property="password" column="password"/>
         <result property="email" column="email"/>
         <result property="createdAt" column="created_at"/>
+        <result property="role" column="role"/>
+        <result property="gender" column="gender"/>
+        <result property="age" column="age"/>
+        <result property="occupation" column="occupation"/>
+        <result property="zipCode" column="zip_code"/>
     </resultMap>
     <!--resultMap属性的值必须和resultMap标签中id属性值一致。-->
-    <select id="SelectAllUsers" resultMap="userResultMap">
-        select * from user_info;
-    </select>
+<!--    <select id="SelectAllUsers" resultMap="userResultMap">-->
+<!--        select * from user_info;-->
+<!--    </select>-->
 
-    <select id="UserLogin" resultMap="userLogin">
+    <select id="UserLogin" resultMap="userResultMap">
         select * from users where user_name = #{username};
     </select>
 
     <insert id="UserRegister">
         insert into users(user_name,password) values(#{username},#{password});
     </insert>
+
+    <update id="updataUserInfo" parameterType="com.example.pojo.User">
+        update users
+        set
+            user_name = #{userName},
+            email = #{email},
+            age = #{age},
+            gender = #{gender},
+            occupation = #{occupation}
+        where user_id = #{userId}
+    </update>
 </mapper>

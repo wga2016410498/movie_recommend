@@ -121,7 +121,7 @@ export default {
                                 if(res.data.data.role === 0){
                                     this.$router.push("/home") 
                                 }else{
-                                    this.$router.push("/manage")
+                                    this.$router.push("/managemovie")
                                 }  
                             }
                             else
