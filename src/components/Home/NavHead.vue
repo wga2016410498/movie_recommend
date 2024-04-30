@@ -13,12 +13,12 @@
    
     <el-col :span="16" >
         <div class="grid-content right">            
-            <div class="nav-item">
+            <!-- <div class="nav-item">
               <span class="nav-span" @click="goCollect">收藏</span>
             </div>
             <div class="nav-item" @click="goHistory">
               <span class="nav-span">历史</span>
-            </div>
+            </div> -->
             <div class="nav-item" style="margin-right:50px">
                 <el-dropdown :hide-on-click="false">
                    
@@ -54,11 +54,11 @@ export default {
     },
     methods:{
         goLogin(){
-            this.$router.push('/login')
+            this.$router.push('/')
         },
         logout(){
           sessionStorage.removeItem('user');
-          this.$router.push('/login')
+          this.$router.push('/')
         }
     }
 }
