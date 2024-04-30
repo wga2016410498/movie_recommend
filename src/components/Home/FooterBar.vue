@@ -20,7 +20,7 @@ export default {
         <el-col :span="5"
                 class="footer-logo">
           <img class="footer-img"
-               src="../../assets/logo.gif"
+               src="../../assets/图片.png"
                width="68px"
                height="68px" />
           <span class="footer-title">{{footerTitle}}</span>

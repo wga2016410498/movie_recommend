@@ -3,7 +3,7 @@
     <el-col :span="8">
         
         <div class="grid-content left">
-            <img class="nav-img" src="../../assets/logo.gif">
+            <img class="nav-img" src="../../assets/图片.png">
             <span class="web-span">
                 {{ title }}
             </span>
