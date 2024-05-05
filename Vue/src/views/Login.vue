@@ -22,9 +22,9 @@
           </span>
         </div>
         <div class="user-help">
-            <span>用户协议</span>
+            <!-- <span>用户协议</span>
             <span>隐私政策</span>
-            <span>帮助中心</span>
+            <span>帮助中心</span> -->
         </div>
 
       </div>

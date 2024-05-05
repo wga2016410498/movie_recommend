@@ -73,8 +73,7 @@
             director = #{director},
             actor = #{actor},
             location = #{location},
-            release_time = #{releaseTime},
-            out_url = #{outUrl}
+            release_time = #{releaseTime}
         WHERE movie_id = #{movieId}
     </update>
 
